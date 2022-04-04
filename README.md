@@ -1,9 +1,12 @@
 # sam-hello-who
 
-AWS SAMの動作チェック用のミニマムパッケージ。
-Python 3.8
+AWS SAMの Lambda + API Gatwayで
+引数をGETメソッドとPOSTメソッドで渡すサンプル。
 
-中身は"Hello world"を出すだけです。
+Python 3.9
+
+中身は"Hello {who}\n"を出すだけです。
+(whoが引数)
 
 
 # デプロイ
@@ -21,26 +24,38 @@ HelloWorldFunction may not have authorization defined, Is this okay? [y/N]: y
 
 以外はデフォルトでいいです。
 
-
-## AWS Cloud Shellからのデプロイ
-
-`sam build` するのに python 3.8 が要るので、
+デプロイが終わったら
 ```sh
-sudo amazon-linux-extras install -y python3.8
+./export1.sh  # 実行にはjqとyqとaws cliが必要
 ```
 
-で、python 3.8をインストールしてください。
+で、APIのURLを `.export.sh` に書き出してください。
 
 
-または
-「sam buildずみのプロジェクトフォルダーをコピーする」
-などで対処してください。
+# テストの実行
 
+```sh
+./get_test.sh  # GETメソッドでテスト
+./post_test.sh # POSTメソッドでテスト
+```
 
 
 # スタックの削除
 
 ```sh
-sam delete
+sam delete --no-prompts
 ```
 で消えます。
+
+
+# メモ
+
+`post_test.sh`にかかれていますが、
+APIゲートウエイにbody送るのには
+`application/json`にする必要があります。
+で、bodyはJSONで。
+
+JSONでない場合event.bodyが空になります(NilやらNONEやら)。
+
+API Gatewayのコンソールからテストするときも、
+POSTの方は「リクエスト本文」のところにJSONを書くこと。

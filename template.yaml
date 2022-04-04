@@ -29,6 +29,11 @@ Resources:
             RequestParameters:
               - method.request.querystring.who:
                   Required: true
+        HelloWorld2:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: post
 
   HelloWorldFunctionLogGroup:
     Type: AWS::Logs::LogGroup
@@ -40,4 +45,4 @@ Resources:
 Outputs:
   HelloWorldApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/${ServerlessRestApiProdStage}/hello/"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/${ServerlessRestApiProdStage}/hello"

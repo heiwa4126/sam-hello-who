@@ -349,3 +349,4 @@ $RECYCLE.BIN/
 tmp*
 tmp/*
 *.zip
+.export.sh
