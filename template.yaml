@@ -21,7 +21,7 @@ Resources:
       CodeUri: src/
       Handler: app.lambda_handler
       Events:
-        HelloWorld:
+        GetHello:
           Type: Api
           Properties:
             Path: /hello
@@ -29,7 +29,7 @@ Resources:
             RequestParameters:
               - method.request.querystring.who:
                   Required: true
-        HelloWorld2:
+        PostHello:
           Type: Api
           Properties:
             Path: /hello
